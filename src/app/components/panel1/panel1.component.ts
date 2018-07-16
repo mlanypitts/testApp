@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ListService } from '../../providers/list.service';
 import { Item } from '../../dto/item/item';
 import { Observable } from 'rxjs';
@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 export class Panel1Component implements OnInit {
 
   items: Item[];
+  @Output() itemSelect: EventEmitter<Item> = new EventEmitter();
 
   constructor(private list: ListService) { }
 
@@ -20,6 +21,14 @@ export class Panel1Component implements OnInit {
 
   getList(): void {
     this.list.getData().subscribe(data => { this.items = data; });
+  }
+
+  onItemSelect(id: number): void {
+    console.log(id);
+    const itemFilter: Item[] = this.items.filter((item: Item) => {
+      return item.id === id;
+     });
+    this.itemSelect.emit(itemFilter[0]);
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Item } from './dto/item/item';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public title = 'hello';
   private abc = 'hello';
+  public currentItem: Item;
+
+  showItem(item: Item): void {
+    console.log(item.id);
+  }
 }

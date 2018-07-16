@@ -1,6 +1,6 @@
 <div>
   <ul class="list">
-    <li *ngFor="let item of items">
+    <li *ngFor="let item of items" (click)="onItemSelect(item.id)">
       <span class="badge">{{item.id}}</span> {{item.title}} {{item.details}}
     </li>
   </ul>
