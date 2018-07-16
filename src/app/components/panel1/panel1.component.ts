@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ListService } from '../../providers/list.service';
+import { Item } from '../../dto/item/item';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-panel1',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Panel1Component implements OnInit {
 
-  constructor() { }
+  items: Item[];
+
+  constructor(private list: ListService) { }
 
   ngOnInit() {
+    this.getList();
+  }
+
+  getList(): void {
+    this.list.getData().subscribe(data => { this.items = data; });
   }
 
 }

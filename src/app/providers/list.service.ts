@@ -16,7 +16,7 @@ export class ListService {
       map((data: any) => {
         const items: Item[] = [];
         data.forEach((item: any) => {
-          items.push(new Item(item.id, item.details, item.title));
+          items.push(new Item(item.id, item.title, item.details));
         });
         return items;
       }));
